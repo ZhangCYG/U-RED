@@ -15,6 +15,7 @@ your_base_dir/
     partnet_rgb_masks_chair/
     partnet_rgb_masks_storagefurniture/
     partnet_rgb_masks_table/
+```
 
 ## Configs
 Modify the config files in folder 'config'. Complete the value occupied by 'xxx' including "base_dir" and "log_path" in training config and "dm_model_path", "re_model_path", "base_dir" and "log_path" in testing config. During testing phase, keep "dm_model_path" and "re_model_path" exactly the same as the trained model. If you want to change the category, just fix "category" into "storagefurniture" or "table".
