@@ -313,13 +313,13 @@ def main(cfg):
             best_re_cd_loss_full.append(torch.stack(best_re_cd_loss_full_otm))
             best_re_loss_partial.append(torch.stack(best_re_loss_partial_otm))
             best_re_cd_loss_partial.append(torch.stack(best_re_cd_loss_partial_otm))
-
-        best_cd_loss_full_all.append(torch.min(torch.stack(best_cd_loss_full), dim=0))
-        best_cd_loss_partial_all.append(torch.min(torch.stack(best_cd_loss_partial), dim=0))
-        best_re_loss_full_all.append(torch.min(torch.stack(best_re_loss_full), dim=0))
-        best_re_cd_loss_full_all.append(torch.min(torch.stack(best_re_cd_loss_full), dim=0))
-        best_re_loss_partial_all.append(torch.min(torch.stack(best_re_loss_partial), dim=0))
-        best_re_cd_loss_partial_all.append(torch.min(torch.stack(best_re_cd_loss_partial), dim=0))
+        
+        best_cd_loss_full_all.append(torch.min(torch.stack(best_cd_loss_full), dim=0)[0])
+        best_cd_loss_partial_all.append(torch.min(torch.stack(best_cd_loss_partial), dim=0)[0])
+        best_re_loss_full_all.append(torch.min(torch.stack(best_re_loss_full), dim=0)[0])
+        best_re_cd_loss_full_all.append(torch.min(torch.stack(best_re_cd_loss_full), dim=0)[0])
+        best_re_loss_partial_all.append(torch.min(torch.stack(best_re_loss_partial), dim=0)[0])
+        best_re_cd_loss_partial_all.append(torch.min(torch.stack(best_re_cd_loss_partial), dim=0)[0])      
 
     best_re_cd_loss_full_all = torch.stack(best_re_cd_loss_full_all)
     best_re_cd_loss_partial_all = torch.stack(best_re_cd_loss_partial_all)
@@ -328,12 +328,12 @@ def main(cfg):
     best_re_loss_full_all = torch.stack(best_re_loss_full_all)
     best_re_loss_partial_all = torch.stack(best_re_loss_partial_all)
 
-    print("best full cd loss from retrieval=" + str(torch.mean(best_re_cd_loss_full).cpu().numpy()),
-          "best partial cd loss from retrieval=" + str(torch.mean(best_re_cd_loss_partial).cpu().numpy()),
-          "best full cd loss=" + str(torch.mean(best_cd_loss_full).cpu().numpy()),
-          "best partial cd loss=" + str(torch.mean(best_cd_loss_partial).cpu().numpy()),
-          "best full re loss=" + str(torch.mean(best_re_loss_full).cpu().numpy()),
-          "best partial re loss=" + str(torch.mean(best_re_loss_partial).cpu().numpy()),
+    print("best full cd loss from retrieval=" + str(torch.mean(torch.stack(best_re_cd_loss_full)).cpu().numpy()),
+          "best partial cd loss from retrieval=" + str(torch.mean(torch.stack(best_re_cd_loss_partial)).cpu().numpy()),
+          "best full cd loss=" + str(torch.mean(torch.stack(best_cd_loss_full)).cpu().numpy()),
+          "best partial cd loss=" + str(torch.mean(torch.stack(best_cd_loss_partial)).cpu().numpy()),
+          "best full re loss=" + str(torch.mean(torch.stack(best_re_loss_full)).cpu().numpy()),
+          "best partial re loss=" + str(torch.mean(torch.stack(best_re_loss_partial)).cpu().numpy()),
           )
 
 
