@@ -3,3 +3,5 @@ log/*
 output/*
 **/__pycache__
 *.pyc
+config/config_train_chair_accustomed.json
+config/config_test_chair_accustomed.json

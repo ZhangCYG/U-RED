@@ -5,22 +5,22 @@
     "category": "chair",
     "data_dir": "data_aabb_all_models",
     "num_source": 500,
-    "mode": "train",
+    "mode": "test",
 
     "use_connectivity": true,
 
-    "init_dm": false,
-    "init_re": false,
-    "dm_model_path": "nan",
-    "re_model_path": "nan",
+    "init_dm": true,
+    "init_re": true,
+    "dm_model_path": "xxx",
+    "re_model_path": "xxx",
     "log_path": "xxx",
 
 
     "device": "cuda",
     "optimizer": "adam",
     "epochs": 200,
-    "batch_size": 64,
-    "num_workers": 4,
+    "batch_size": 1,
+    "num_workers": 1,
     "input_channels": 3,
     "random_rot": true,
 
@@ -42,7 +42,7 @@
 
     "use_chamfer_loss": 30.0,
     "use_symmetry_loss": 30.0,
-    "init_p_m_loss": -1,
+    "init_p_m_loss": 50,
 
 
     "use_deformed_pc_consistency": 10.0,
@@ -51,5 +51,6 @@
 
 
     "share_src_latent": false,
-    "clip_vec": false
+    "clip_vec": false,
+    "top_k": 10
 }

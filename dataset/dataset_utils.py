@@ -286,34 +286,34 @@ def output_visualization_mesh(output_vertices, src_vertices, src_faces, target_p
 
     ### Target
     # Save point cloud.
-    out_point_cloud_file = os.path.join(temp_fol, str(src_id) + "_" + target_id + '_points.xyz')
+    out_point_cloud_file = os.path.join(temp_fol, str(src_id) + "_" + str(target_id) + '_points.xyz')
     np.savetxt(out_point_cloud_file, target_points, delimiter=' ', fmt='%f')
     print("Saved '{}'.".format(out_point_cloud_file))
 
     # Save point ids.
-    out_point_ids_file = os.path.join(temp_fol, str(src_id) + "_" + target_id + '_point_ids.txt')
+    out_point_ids_file = os.path.join(temp_fol, str(src_id) + "_" + str(target_id) + '_point_ids.txt')
     np.savetxt(out_point_ids_file, target_point_labels, fmt='%d')
     print("Saved '{}'.".format(out_point_ids_file))
 
     # Render point_cloud.
-    target_points_snapshot_file = os.path.join(temp_fol, target_id + '_points')
+    target_points_snapshot_file = os.path.join(temp_fol, str(target_id) + '_points')
     render_point_cloud(out_point_cloud_file, out_point_ids_file,
                        target_points_snapshot_file)
 
     ### Output
     # Save mesh.
-    out_mesh_file = os.path.join(temp_fol, str(src_id) + "_" + target_id + '_mesh.obj')
+    out_mesh_file = os.path.join(temp_fol, str(src_id) + "_" + str(target_id) + '_mesh.obj')
     mesh = trimesh.Trimesh(vertices=output_vertices, faces=src_faces)
     mesh.export(out_mesh_file, os.path.splitext(out_mesh_file)[1][1:])
     print("Saved '{}'.".format(out_mesh_file))
 
     # Save vertex ids.
-    out_vertex_ids_file = os.path.join(temp_fol, str(src_id) + "_" + target_id + '_vertex_ids.txt')
+    out_vertex_ids_file = os.path.join(temp_fol, str(src_id) + "_" + str(target_id) + '_vertex_ids.txt')
     np.savetxt(out_vertex_ids_file, output_vertices, fmt='%d')
     print("Saved '{}'.".format(out_vertex_ids_file))
 
     # Render mesh.
-    output_mesh_snapshot_file = os.path.join(temp_fol, str(src_id) + "_" + target_id + '_mesh')
+    output_mesh_snapshot_file = os.path.join(temp_fol, str(src_id) + "_" + str(target_id) + '_mesh')
     render_mesh(out_mesh_file, out_face_ids_file, output_mesh_snapshot_file)
 
     # Output to a single image
@@ -339,9 +339,9 @@ def output_visualization_mesh(output_vertices, src_vertices, src_faces, target_p
         x_offset += width
 
     if (chamfer_cost == None):
-        output_image_filename = os.path.join(output_fol, str(src_id) + "_" + target_id + '_deform.png')
+        output_image_filename = os.path.join(output_fol, str(src_id) + "_" + str(target_id) + '_deform.png')
     else:
-        output_image_filename = os.path.join(output_fol, str(src_id) + "_" + target_id + '_' + method + '_' + str(
+        output_image_filename = os.path.join(output_fol, str(src_id) + "_" + str(target_id) + '_' + method + '_' + str(
             float(chamfer_cost)) + ".png")
 
     new_im.save(output_image_filename)

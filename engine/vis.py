@@ -35,7 +35,7 @@ def main(cfg):
         bs = cfg["batch_size"]
     else:
         DATA_SPLIT = 'test'
-        bs = cfg["batch_size"]  # must be 2
+        bs = cfg["batch_size"]
 
     dataset = shapenet_dataset(cfg)
     loader = torch.utils.data.DataLoader(
@@ -94,7 +94,7 @@ def main(cfg):
 
     # construct retrieval decoder
     re_order_decoder_full = re_residual_net(cfg['source_latent_dim'] + cfg['target_latent_dim'] * 2)
-    re_order_decoder_partial = re_residual_net(cfg['source_latent_dim'] + cfg['target_latent_dim'] * 2)
+    re_order_decoder_partial = re_residual_net(cfg['source_latent_dim'] + cfg['target_latent_dim'] * 3)
     if cfg["init_re"]:
         fname_re = os.path.join(cfg["re_model_path"])
         state_dict = torch.load(fname_re)
@@ -122,7 +122,6 @@ def main(cfg):
     source_labels_all = np.expand_dims(np.arange(len(SOURCE_MODEL_INFO)), axis=1)
     source_labels_all = np.reshape(source_labels_all, (-1))
     source_labels_all = source_labels_all[:500]
-    print(source_labels_all.shape)
 
     '''
      re_src_latent_codes_template = get_source_latent_codes_fixed(source_labels, RETRIEVAL_SOURCE_LATENT_CODES,
@@ -176,7 +175,6 @@ def main(cfg):
 
         mat_all = torch.stack(mat)
         def_param_all = torch.stack(def_param)
-        print(def_param_all.shape)
 
         if cfg["use_connectivity"]:
             conn_mat = [conn_mat.to(cfg["device"], dtype=torch.float) for conn_mat in src_connectivity_mat]

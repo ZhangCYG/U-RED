@@ -25,7 +25,6 @@ from network.deformation_net import DeformNet_MatchingNet as DM_decoder
 from network.deformation_net import re_residual_net
 
 from loss.chamfer_loss import compute_cm_loss
-from tqdm import tqdm
 
 
 def main(cfg):
@@ -196,7 +195,7 @@ def main(cfg):
         best_re_cd_loss_full = []
         best_re_cd_loss_partial = []
 
-        for _ in tqdm(range(4 // cfg["batch_size"])):
+        for _ in range(4 // cfg["batch_size"]):
             cd_loss_full_list = []
             cd_loss_partial_list = []
             re_loss_full_list = []
