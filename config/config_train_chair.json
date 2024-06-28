@@ -18,7 +18,7 @@
 
     "device": "cuda",
     "optimizer": "adam",
-    "epochs": 200,
+    "epochs": 300,
     "batch_size": 64,
     "num_workers": 4,
     "input_channels": 3,
